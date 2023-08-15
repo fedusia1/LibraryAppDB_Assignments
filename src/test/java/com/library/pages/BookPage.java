@@ -18,6 +18,33 @@ public class BookPage extends BasePage {
     @FindBy(id = "book_categories")
     public WebElement mainCategoryElement;
 
+    @FindBy(xpath = "//option[@value='1']")
+    public WebElement firstInMainCategory;
+
+    @FindBy(xpath = "//select[@class= 'form-control select2']")
+    public List<WebElement> listMainCategoryElement;
+
+    @FindBy(xpath = "//form[@id='add_book_form']//select[@id= 'book_group_id']")
+    public List<WebElement> ListMainCategoryInForm;
+
+    @FindBy(xpath = "//a[@class='btn btn-primary btn-sm']")
+    public WebElement edditBookButton;
+
+    @FindBy(xpath = "//table[@id='tbl_books']//td[.='Liudas book']/../td[1]//a")
+    public WebElement edditBookButtonInTable;
+
+    @FindBy(xpath ="(//input[@class='form-control'])[1]")
+    public WebElement bookNameInputBox;
+
+
+    //@FindBy(xpath = "//h5[@class='modal-title']")
+    //@FindBy(id="edit_book_modal")
+    @FindBy(id="edit_book_form")
+    public WebElement editBookWindow;
+
+    @FindBy(xpath = "//td[.='Liudas book']")
+    public WebElement newBookName;
+
     @FindBy(name = "name")
     public WebElement bookName;
 
@@ -31,8 +58,12 @@ public class BookPage extends BasePage {
     @FindBy(xpath = "//button[@type='submit']")
     public WebElement saveChanges;
 
+
     @FindBy(xpath = "//div[@class='toast-message']")
     public WebElement toastMessage;
+
+    @FindBy(id="toast-container")
+    public WebElement toastContainer;
 
     @FindBy(name = "year")
     public WebElement year;
@@ -49,6 +80,9 @@ public class BookPage extends BasePage {
     public WebElement description;
 
 
+    @FindBy(xpath = "//div[text()='The book has been created.']")
+    public WebElement popupMessage;
+
 
     public WebElement editBook(String book) {
         String xpath = "//td[3][.='" + book + "']/../td/a";
@@ -60,6 +94,14 @@ public class BookPage extends BasePage {
         return Driver.getDriver().findElement(By.xpath(xpath));
     }
 
+    public String getBookInfo(String infoName){
+        String locator="//form[@id='edit_book_form']//label[.='"+infoName+"']/../input";
+        return Driver.getDriver().findElement(By.xpath(locator)).getAttribute("value");
+    }
 
+    public void bookSearch(String bookName) {
+        search.sendKeys(bookName);
+
+    }
 
 }

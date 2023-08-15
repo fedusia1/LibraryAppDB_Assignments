@@ -9,7 +9,8 @@ public class DashBoardPage extends BasePage
 {
 
 
-    @FindBy(id = "borrowed_books")
+   // @FindBy(id = "borrowed_books")
+    @FindBy(xpath = "//h2[@id='borrowed_books']")
     public WebElement borrowedBooksNumber;
 
     @FindBy(id = "user_count")
@@ -17,6 +18,9 @@ public class DashBoardPage extends BasePage
 
     @FindBy(id = "book_count")
     public WebElement booksNumber;
+
+    @FindBy(xpath = "//span[.='Books']")
+    public WebElement BooksLink;
 
 
 
